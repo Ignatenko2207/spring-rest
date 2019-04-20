@@ -1,6 +1,10 @@
 package it.discovery.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Book {
+
 	private int id;
 
 	private String author;
@@ -8,6 +12,16 @@ public class Book {
 	private String name;
 	
 	private int year;
+
+	public Book() {
+	}
+
+	public Book(int id, String author, String name, int year) {
+		this.id = id;
+		this.author = author;
+		this.name = name;
+		this.year = year;
+	}
 
 	public int getId() {
 		return id;
