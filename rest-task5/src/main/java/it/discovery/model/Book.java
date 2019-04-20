@@ -2,34 +2,15 @@ package it.discovery.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
 public class Book {
-
 	private int id;
 
 	private String author;
 
-	@JsonProperty("title-json")
-	@XmlElement(name = "title-xml")
+	@JsonProperty("title")
 	private String name;
 	
 	private int year;
-
-	public Book() {
-	}
-
-	public Book(int id, String author, String name, int year) {
-		this.id = id;
-		this.author = author;
-		this.name = name;
-		this.year = year;
-	}
 
 	public int getId() {
 		return id;

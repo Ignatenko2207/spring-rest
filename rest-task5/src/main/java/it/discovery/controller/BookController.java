@@ -2,46 +2,40 @@ package it.discovery.controller;
 
 import it.discovery.model.Book;
 import it.discovery.repository.BookRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/book")
-public class BookController {	
+@RequestMapping("book")
+public class BookController {
 
-    @Autowired
-    BookRepository bookRepository;
+    private final BookRepository bookRepository;
 
-    @GetMapping(produces={MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public List<Book> getAllBooks(){
+    public BookController(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
+
+    @GetMapping
+    public List<Book> findAll() {
         return bookRepository.findAll();
     }
 
-    @GetMapping(path = "/{id}", produces={MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public Book getBookById(@PathVariable("id") int id){
+    @GetMapping("{id}")
+    public Book findById(@PathVariable  int id) {
         return bookRepository.findById(id);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Book createBook(@RequestBody Book book){
+    @PostMapping
+    public Book save(@RequestBody Book book) {
         bookRepository.save(book);
         return book;
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Book updateBook(@RequestBody Book book){
-        if(bookRepository.findById(book.getId())!=null){
-            bookRepository.save(book);
-            return bookRepository.findById(book.getId());
-        }
-        return book;
-    }
-
-    @DeleteMapping(path = "/{id}")
-    public void deleteBook(@PathVariable("id") int id){
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable int id) {
         bookRepository.delete(id);
     }
 }
