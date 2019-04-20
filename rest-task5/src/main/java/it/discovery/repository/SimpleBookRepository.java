@@ -32,6 +32,7 @@ public class SimpleBookRepository implements BookRepository {
 			book.setId(counter);
 			books.put(counter, book);
 			System.out.println("*** Book with id=" + book.getId() + " was created");
+
 		} else {
 			books.put(book.getId(), book);
 			System.out.println("*** Book with id=" + book.getId() + " was updated");
