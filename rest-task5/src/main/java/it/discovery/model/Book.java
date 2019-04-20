@@ -1,24 +1,20 @@
 package it.discovery.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.lang.NonNull;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 public class Book {
-
 	private int id;
 
-	@Size(min = 1, max = 4000)
 	@NotNull
 	private String author;
 
-	@Size(min = 1, max = 4000)
 	@JsonProperty("title")
 	private String name;
 
-	@NonNull
+	@Min(1900)
 	private int year;
 
 	public int getId() {
