@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.cache.annotation.CacheDefaults;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -47,7 +48,7 @@ public class BookController {
 
     @GetMapping("{id}")
     @Timed("book.findById")
-    @Cacheable("books")
+    @CacheDefaults(cacheName = "books")
     public Book findById(@PathVariable int id) {
         return Optional.ofNullable(bookRepository.findById(id))
                 .orElseThrow(() -> new BookNotFoundException(id));
