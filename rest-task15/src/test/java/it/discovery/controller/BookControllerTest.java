@@ -38,11 +38,11 @@ public class BookControllerTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"-1", "10000"})
+    @ValueSource(strings = {"-1", "100"})
     void findBook_invalidId_ReturnsNotFound(String id) throws Exception {
         ResultActions actions = mockMvc.perform(get("/book/" + id));
 
-        actions.andExpect(status().isNotFound());
+        actions.andExpect(status().is4xxClientError());
     }
 
     @Test
