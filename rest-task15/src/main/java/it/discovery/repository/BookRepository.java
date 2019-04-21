@@ -12,7 +12,7 @@ public interface BookRepository {
 	List<Book> findAll();
 
 	Page searchBooks(PageCriteria pageCriteria);
-	
+
 	void save(Book book);
 	
 	boolean delete(int id);

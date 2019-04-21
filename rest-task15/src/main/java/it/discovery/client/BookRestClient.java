@@ -34,4 +34,14 @@ public class BookRestClient {
 //    }
 
 
+//    public static void main(String[] args) {
+//        Book book = new Book();
+//        book.setName("Spring MVC");
+//        book.setYear(2019);
+//        book.setAuthor("Gosling");
+//        BookRestClient client = new BookRestClient("http://localhost:8080/");
+//        client.save(book);
+//        ResponseEntity<Book> responseEntity =  client.findById(1);
+//        System.out.println("Body is " + responseEntity.getBody());
+//    }
 }
