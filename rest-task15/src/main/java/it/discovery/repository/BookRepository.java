@@ -1,10 +1,10 @@
 package it.discovery.repository;
 
+import java.util.List;
+
 import it.discovery.model.Book;
 import it.discovery.pagination.Page;
 import it.discovery.pagination.PageCriteria;
-
-import java.util.List;
 
 public interface BookRepository {
 	Book findById(int id);
@@ -12,8 +12,8 @@ public interface BookRepository {
 	List<Book> findAll();
 
 	Page searchBooks(PageCriteria pageCriteria);
-
-	void save(Book book);
+	
+	Book save(Book book);
 	
 	boolean delete(int id);
 
